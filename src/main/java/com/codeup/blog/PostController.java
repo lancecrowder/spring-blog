@@ -15,14 +15,20 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-        public @ResponseBody String aPost(@PathVariable String id){
-        return String.format("<h1>Post Name: %s!</h1>", id);
+        public @ResponseBody String ShowDetails(@PathVariable Long id){
+        return String.format("<h1>Post Number: %s!</h1>", id);
+    }
+
+    @GetMapping("/posts/{id}/edit")
+        public @ResponseBody String EditPost(@PathVariable Long id){
+        return String.format("<h1>View form to edit Post #: %s!</h1>", id);
     }
 
     @GetMapping("/posts/create")
         public @ResponseBody String newPost(){
         return String.format("<form action=\"/posts/create\" method=\"post\">"+
-                "<h1>Create a new post!</h1><button type=\"submit\"> Post me! </button>"+
+                "<h1>Create a new post!</h1>" +
+                "<button type=\"submit\"> Post me! </button>"+
                 "</form>");
     }
 

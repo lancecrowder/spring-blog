@@ -36,9 +36,9 @@ public class MyFirstController {
         return String.format("%d + 1 = %d", n, n+1);
     }
 
-    @GetMapping("/HomeController")
+    @GetMapping("/")
     public @ResponseBody String HomeController(){
-        return "This is the landing page!";
+        return "<h1>Welcome to my Blog Page!!</h1>";
     }
 
 }
