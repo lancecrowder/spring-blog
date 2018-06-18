@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>How'd ya do?</title>
+</head>
+<body>
+<h1>You guessed: <span th:text="${n}"></span></h1>
+<h1>The Correct answer is <span th:text="${number}"></span> </h1>
+<h1 th:if="${result}">You are a winner!!!</h1>
+<img th:if="${!result}" src="https://media.giphy.com/media/3oz8xLd9DJq2l2VFtu/giphy.gif" width="480" height="287" />
+</body>
+</html>
