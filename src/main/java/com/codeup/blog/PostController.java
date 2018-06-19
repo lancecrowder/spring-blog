@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PostController {
 
     @GetMapping("/posts")
-        public @ResponseBody String Posts(){
-        return String.format("<h1>Posts Go Here!</h1>");
+    public String posts(){
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-        public @ResponseBody String ShowDetails(@PathVariable Long id){
-        return String.format("<h1>Post Number: %s!</h1>", id);
+    public String aPost(){
+        return "posts/show";
     }
 
     @GetMapping("/posts/{id}/edit")
