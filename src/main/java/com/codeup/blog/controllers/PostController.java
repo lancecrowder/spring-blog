@@ -24,7 +24,7 @@ public class PostController {
     @GetMapping("/posts")
     public String index(Model view){
         List<Post> aListOfPosts = makeSomePosts();
-        view.addAttribute("posts", aListOfPosts);
+        view.addAttribute("posts", postService.findAll());
         return "posts/index";
     }
 
@@ -32,8 +32,8 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String showDetails(@PathVariable long id, Model view){
         Post post = new Post(id, "Imma Post", "Ema Nymton");
-        view.addAttribute("favoriteNumber", postService.getFavoriteNumber());
-        view.addAttribute("post", post);
+//        view.addAttribute("favoriteNumber", postService.getFavoriteNumber());
+        view.addAttribute("post", postService.findOne(id));
         return "posts/show";
     }
 
