@@ -10,7 +10,7 @@ public class DiceController {
 
     @GetMapping("/roll-dice")
     public String dice(){
-        return "/roll-dice";
+        return "roll-dice";
     }
 
     @GetMapping("/roll-dice/{n}")

@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Roll Dice</title>
-</head>
+<head th:replace="partials/header :: header('Roll the dice')" ></head>
 <body>
-
 <h1>Dice Roller</h1>
 <h2>Guess the number and roll the dice!</h2>
     <a href="/roll-dice/1"><Button type = "submit">1</Button></a>
