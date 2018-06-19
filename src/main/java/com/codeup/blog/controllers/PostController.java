@@ -1,5 +1,6 @@
 package com.codeup.blog.controllers;
 
+import com.codeup.blog.PostService;
 import com.codeup.blog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,12 @@ import java.util.Arrays;
 @Controller
 public class PostController {
 
+    private PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
+
     @GetMapping("/posts")
     public String index(Model view){
         List<Post> aListOfPosts = makeSomePosts();
@@ -25,6 +32,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String showDetails(@PathVariable long id, Model view){
         Post post = new Post(id, "Imma Post", "Ema Nymton");
+        view.addAttribute("favoriteNumber", postService.getFavoriteNumber());
         view.addAttribute("post", post);
         return "posts/show";
     }
