@@ -3,7 +3,13 @@
 <head th:replace="partials/header :: header('Posts')" ></head>
 <body>
 <div th:replace="partials/navbar :: navbar"></div>
-<h1>Some Stuff</h1>
+<h1>Posts</h1>
+
+<div th:each="post : ${posts}">
+    <h3><span th:text="${post.title}"></span></h3>
+    <p><span th:text="${post.body}"></span></p>
+</div>
+
 <div th:replace="partials/footer :: footer"></div>
 </body>
 </html>
