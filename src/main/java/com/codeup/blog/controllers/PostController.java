@@ -4,10 +4,7 @@ import com.codeup.blog.PostService;
 import com.codeup.blog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Arrays;
@@ -43,16 +40,15 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-        public @ResponseBody String newPost(){
-        return String.format("<form action=\"/posts/create\" method=\"post\">"+
-                "<h1>Create a new post!</h1>" +
-                "<button type=\"submit\"> Post me! </button>"+
-                "</form>");
+    public String showCreateForm(Model view) {
+        view.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-        public @ResponseBody String newNewPost(){
-        return String.format("<h1>I'm posted!</h1>");
+    public String create(@ModelAttribute Post post) {
+        postService.save(post);
+        return "redirect:/posts";
     }
 
     private List<Post> makeSomePosts() {
