@@ -27,16 +27,19 @@ public class PostController {
 
 
     @GetMapping("/posts/{id}")
-    public String showDetails(@PathVariable long id, Model view){
-        Post post = new Post(id, "Imma Post", "Ema Nymton");
+    public String showDetails(@PathVariable int id, Model view){
+//        Post post = new Post(id, "Imma Post", "Ema Nymton");
 //        view.addAttribute("favoriteNumber", postService.getFavoriteNumber());
         view.addAttribute("post", postService.findOne(id));
         return "posts/show";
     }
 
     @GetMapping("/posts/{id}/edit")
-        public @ResponseBody String EditPost(@PathVariable Long id){
-        return String.format("<h1>View form to edit Post #: %s!</h1>", id);
+        public String EditPost(@PathVariable int id, Model model){
+        Post post = postService.findOne(id);
+        model.addAttribute("post", post);
+        System.out.println("Post is: " + post);
+        return "/posts/edit";
     }
 
     @GetMapping("/posts/create")

@@ -20,7 +20,7 @@ public class PostService {
     }
 
     public Post save(Post post) {
-        post.setId((long) (posts.size() + 1));
+        post.setId((posts.size() + 1));
         posts.add(post);
         return post;
     }
@@ -30,9 +30,9 @@ public class PostService {
     }
 
     private void createPosts() {
-        Post post1 = new Post((long) 1, "Post 1", "Some stuff about post 1");
-        Post post2 = new Post((long )2, "Post 2", "Some stuff about post 2");
-        Post post3 = new Post((long)3, "Post 3", "Some stuff about post 3");
+        Post post1 = new Post( 1, "Post 1", "Some stuff about post 1");
+        Post post2 = new Post(2, "Post 2", "Some stuff about post 2");
+        Post post3 = new Post(3, "Post 3", "Some stuff about post 3");
         save(post1);
         save(post2);
         save(post3);
