@@ -1,8 +1,20 @@
 package com.codeup.blog.models;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="posts")
 public class Post {
+    @Id  @GeneratedValue
     private int id;
+    @Column (name="title_of_post", nullable = false, unique = true)
     private String title;
+    @Column (name = "body_of_post", nullable = false)
     private String body;
 
     public Post(String title, String body) {

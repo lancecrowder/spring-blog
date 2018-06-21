@@ -35,10 +35,10 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}/edit")
-        public String EditPost(@PathVariable int id, Model model){
-        Post post = postService.findOne(id);
-        model.addAttribute("post", post);
-        System.out.println("Post is: " + post);
+        public String EditPost(@PathVariable int id, Model view){
+        Post existingPost = postService.findOne(id);
+        view.addAttribute("post", existingPost);
+        System.out.println("Post is: " + existingPost);
         return "/posts/edit";
     }
 
