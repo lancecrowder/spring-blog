@@ -1,17 +1,14 @@
 package com.codeup.blog.models;
 
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="posts")
 public class Post {
-    @Id  @GeneratedValue
-    private int id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     @Column (name="title_of_post", nullable = false, unique = true)
     private String title;
     @Column (name = "body_of_post", nullable = false)
@@ -22,7 +19,7 @@ public class Post {
         this.body = body;
     }
 
-    public Post(int id, String title, String body) {
+    public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -30,11 +27,11 @@ public class Post {
 
     public Post(){}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

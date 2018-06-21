@@ -1,6 +1,7 @@
 package com.codeup.blog.controllers;
 
 import com.codeup.blog.PostService;
+import com.codeup.blog.Repositories.PostRepository;
 import com.codeup.blog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,33 +13,34 @@ import java.util.Arrays;
 @Controller
 public class PostController {
 
-    private PostService postService;
+    private final PostRepository postDao;
 
-    public PostController(PostService postService) {
-        this.postService = postService;
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
     @GetMapping("/posts")
     public String index(Model view){
-        List<Post> aListOfPosts = makeSomePosts();
-        view.addAttribute("posts", postService.findAll());
+//        List<Post> aListOfPosts = makeSomePosts();
+        view.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
 
     @GetMapping("/posts/{id}")
-    public String showDetails(@PathVariable int id, Model view){
+    public String showDetails(@PathVariable Long id, Model view){
 //        Post post = new Post(id, "Imma Post", "Ema Nymton");
 //        view.addAttribute("favoriteNumber", postService.getFavoriteNumber());
-        view.addAttribute("post", postService.findOne(id));
+        view.addAttribute("post", postDao.findOne(id));
         return "posts/show";
     }
 
-    @GetMapping("/posts/{id}/edit")
-        public String EditPost(@PathVariable int id, Model view){
-        Post existingPost = postService.findOne(id);
-        view.addAttribute("post", existingPost);
-        System.out.println("Post is: " + existingPost);
+    @PostMapping("/posts/{id}/edit")
+        public String EditPost(@PathVariable long id, Model view){
+        Post existingPost = postDao.findOne(id);
+        postDao.save(existingPost);
+//        view.addAttribute("post", existingPost);
+//        System.out.println("Post is: " + existingPost);
         return "/posts/edit";
     }
 
@@ -50,14 +52,21 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post post) {
-        postService.save(post);
+        postDao.save(post);
         return "redirect:/posts";
     }
 
-    private List<Post> makeSomePosts() {
-        return Arrays.asList(
-            new Post("Title 1", "Body 1"),
-            new Post("Title 2", "Body 2")
-        );
+    @PostMapping("/posts/{id}/delete")
+    public String delete(@PathVariable long id) {
+        postDao.delete(id);
+        return "redirect:/posts";
     }
+
+
+//    private List<Post> makeSomePosts() {
+//        return Arrays.asList(
+//            new Post("Title 1", "Body 1"),
+//            new Post("Title 2", "Body 2")
+//        );
+//    }
 }

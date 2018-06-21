@@ -6,12 +6,15 @@
 <h1>Posts</h1>
 
 <div th:each="post : ${posts}">
-    <!--<form action="/posts/{"></form>-->
+    <form method="post" th:action="@{'/posts/'+ ${post.id} +'/edit'}">
     <h3><span th:text="${post.title}"></span></h3>
     <p><span th:text="${post.body}"></span></p>
     <p><span th:text="${post.id}"></span></p>
-    <!--<input type="hidden" name="id" th:value="${post.id}">-->
-    <a href="/posts/{id}/edit"><Button type = "submit">Edit</Button></a>
+    <a href="@{'/posts/'+ ${post.id} +'/edit'}"><Button type = "submit">Edit</Button></a>
+    </form>
+    <form method="post" th:action="@{'/posts/'+ ${post.id} +'/delete'}">
+    <a href="/posts/delete"><Button type = "submit">Delete</Button></a>
+    </form>
 </div>
 
 <div th:replace="partials/footer :: footer"></div>
