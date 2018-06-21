@@ -6,8 +6,12 @@
 <h1>Posts</h1>
 
 <div th:each="post : ${posts}">
+    <!--<form action="/posts/{"></form>-->
     <h3><span th:text="${post.title}"></span></h3>
     <p><span th:text="${post.body}"></span></p>
+    <p><span th:text="${post.id}"></span></p>
+    <!--<input type="hidden" name="id" th:value="${post.id}">-->
+    <a href="/posts/{id}/edit"><Button type = "submit">Edit</Button></a>
 </div>
 
 <div th:replace="partials/footer :: footer"></div>
