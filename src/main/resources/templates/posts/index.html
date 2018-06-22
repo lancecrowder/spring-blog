@@ -4,17 +4,23 @@
 <body>
 <div th:replace="partials/navbar :: navbar"></div>
 <h1>Posts</h1>
-
-<div th:each="post : ${posts}">
-    <form method="post" th:action="@{'/posts/'+ ${post.id} +'/edit'}">
-    <h3><span th:text="${post.title}"></span></h3>
-    <p><span th:text="${post.body}"></span></p>
-    <p><span th:text="${post.id}"></span></p>
-    <a href="@{'/posts/'+ ${post.id} +'/edit'}"><Button type = "submit">Edit</Button></a>
-    </form>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div th:each="post : ${posts}">
+            <form method="get">
+                <h3 class="card-header"><span th:text="${post.title}"></span></h3>
+            <div class="card-body">
+                <p class="card-text"><span th:text="${post.body}"></span></p>
+                <a href="#" th:action="@{'/posts/'+ ${post.id} +'/edit'}">Edit</a>
+            </div>
+            </form>
     <form method="post" th:action="@{'/posts/'+ ${post.id} +'/delete'}">
-    <a href="/posts/delete"><Button type = "submit">Delete</Button></a>
+    <a href="/posts/delete" class="btn btn-primary">Delete</a>
     </form>
+</div>
+</div>
+    </div>
 </div>
 
 <div th:replace="partials/footer :: footer"></div>
