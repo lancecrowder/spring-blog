@@ -43,10 +43,8 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-        public String UpdatePost(@PathVariable long id, Model view){
-        Post existingPost = postDao.findOne(id);
-        postDao.save(existingPost);
-//        System.out.println("Post is: " + existingPost);
+        public String UpdatePost(@PathVariable long id, @ModelAttribute Post post){
+        postDao.save(post);
         return "redirect:/posts";
     }
 
