@@ -35,13 +35,19 @@ public class PostController {
         return "posts/show";
     }
 
-    @PostMapping("/posts/{id}/edit")
+    @GetMapping("/posts/{id}/edit")
         public String EditPost(@PathVariable long id, Model view){
         Post existingPost = postDao.findOne(id);
-        postDao.save(existingPost);
-//        view.addAttribute("post", existingPost);
-//        System.out.println("Post is: " + existingPost);
+        view.addAttribute("post", existingPost);
         return "/posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+        public String UpdatePost(@PathVariable long id, Model view){
+        Post existingPost = postDao.findOne(id);
+        postDao.save(existingPost);
+//        System.out.println("Post is: " + existingPost);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/create")
