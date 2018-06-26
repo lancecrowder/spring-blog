@@ -10,9 +10,9 @@
     <div class="card">
         <div class="card-body">
     <!--<form method="get" th:action=>-->
-        <h3><span th:text="${post.title}"></span></h3>
-        <p><span th:text="${post.body}"></span></p>
-        <p><span th:text="${post.id}"></span></p>
+        <h3 class="text-center"><span th:text="${post.title}"></span></h3>
+        <p class="text-center"><span th:text="${post.body}"></span></p>
+        <!--<p><span th:text="${post.id}"></span></p>-->
         <a th:href="@{'/posts/'+ ${post.id} +'/edit'}" class="btn btn-warning btn-md">Edit</a>
     <!--</form>-->
     <form method="post" th:action="@{'/posts/'+ ${post.id} +'/delete'}">
