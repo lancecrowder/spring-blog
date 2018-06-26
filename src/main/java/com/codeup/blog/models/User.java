@@ -1,6 +1,7 @@
 package com.codeup.blog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
@@ -9,14 +10,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (name="username", nullable = false, unique = true)
     private String username;
-
-    @Column (name="email", nullable = false)
     private String email;
-
-    @Column (name="password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -63,5 +63,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
