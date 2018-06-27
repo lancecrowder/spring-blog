@@ -1,14 +1,10 @@
 package com.codeup.blog.controllers;
 
-import com.codeup.blog.PostService;
 import com.codeup.blog.Repositories.PostRepository;
 import com.codeup.blog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Arrays;
 
 @Controller
 public class PostController {
@@ -29,8 +25,6 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String showDetails(@PathVariable Long id, Model view){
-//        Post post = new Post(id, "Imma Post", "Ema Nymton");
-//        view.addAttribute("favoriteNumber", postService.getFavoriteNumber());
         view.addAttribute("post", postDao.findOne(id));
         return "posts/show";
     }
@@ -65,12 +59,4 @@ public class PostController {
         postDao.delete(id);
         return "redirect:/posts";
     }
-
-
-//    private List<Post> makeSomePosts() {
-//        return Arrays.asList(
-//            new Post("Title 1", "Body 1"),
-//            new Post("Title 2", "Body 2")
-//        );
-//    }
 }
