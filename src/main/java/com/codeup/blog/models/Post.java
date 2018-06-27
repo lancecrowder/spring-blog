@@ -9,7 +9,7 @@ public class Post {
     private long id;
     @Column (name="title_of_post", nullable = false, unique = true)
     private String title;
-    @Column (name = "body_of_post", nullable = false)
+    @Column (name = "body_of_post", nullable = false, columnDefinition = "TEXT")
     private String body;
     @ManyToOne
     @JoinColumn (name = "user_id")

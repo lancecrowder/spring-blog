@@ -1,9 +1,10 @@
-package com.codeup.blog;
+package com.codeup.blog.services;
 
 import com.codeup.blog.Repositories.UserRepository;
 import com.codeup.blog.models.Post;
 import com.codeup.blog.Repositories.PostRepository;
 import com.codeup.blog.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
+    @Autowired
     public PostService(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
@@ -41,5 +43,9 @@ public class PostService {
 
     public void deletePost(Long id){
         postRepository.delete(id);
+    }
+
+    public List<Post> search(String searchTerm) {
+        return postRepository.search("%" + searchTerm + "%");
     }
 }
