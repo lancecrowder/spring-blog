@@ -22,8 +22,7 @@
     <div class="card col-6">
         <div class="card-body">
         <h2 class="text-center"><span th:text="${post.title}"></span></h2>
-            <!--<p>Posted By: <span th:text="${post.user.email}" /></p>-->
-            <p>Posted By: <span th:text="${post.user.email}" /></p>
+            <p>Posted By: <span th:text="${post.user.username}" /></p>
 
             <p class="text-center"><span th:text="${post.body}"></span></p>
                 <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn btn-primary btn-block">Edit</a>

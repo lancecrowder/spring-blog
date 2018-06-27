@@ -34,6 +34,12 @@ public class PostController {
         } else {
             posts = postSvc.search(searchTerm);
         }
+
+        for(Post post:posts){
+            System.out.println(post.getId() + ": " + post.getUser());
+
+        }
+
         view.addAttribute("posts", posts);
         view.addAttribute("searchTerm", searchTerm);
         return "posts/index";

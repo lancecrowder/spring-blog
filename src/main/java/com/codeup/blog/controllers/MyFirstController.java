@@ -36,9 +36,9 @@ public class MyFirstController {
         return String.format("%d + 1 = %d", n, n+1);
     }
 
-    @GetMapping("/")
-    public @ResponseBody String HomeController(){
-        return "<h1>Welcome to my Blog Page!!</h1>";
-    }
+//    @GetMapping("/")
+//    public @ResponseBody String HomeController(){
+//        return "<h1>Welcome to my Blog Page!!</h1>";
+//    }
 
 }
