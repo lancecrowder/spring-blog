@@ -1,7 +1,12 @@
 body{
-    background-color: #FFFEFA;
+    background-image: url("../img/Beachin.jpg");
+    background-color: #00688B;
 }
 
 .card{
     background-color: #E1E1C9;
+}
+
+body > h1{
+    color: white;
 }

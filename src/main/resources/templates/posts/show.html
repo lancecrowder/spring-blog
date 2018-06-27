@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: header('Posts')" ></head>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(${'Post show page'})" />
 <body>
-<div th:replace="partials/navbar :: navbar"></div>
 
-    <h3 th:text="${post.title}" />
+<div class="container">
+
+    <h1 th:text="${post.title}" />
+
+    <h2>Posted By: <span th:text="${post.user.email}" /></h2>
+
     <p th:text="${post.body}" />
-    <input type="hidden" name="id" value="${post.id}" />
 
-<div th:replace="partials/footer :: footer"></div>
+    <p th:text="${post.id}" />
+
+</div>
+
+<th:block th:replace="partials :: footer" />
 </body>
 </html>

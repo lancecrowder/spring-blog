@@ -59,4 +59,6 @@ public class PostController {
         postDao.delete(id);
         return "redirect:/posts";
     }
+
+
 }

@@ -1,23 +1,33 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/header :: header('Posts')" ></head>
 <body>
 <div th:replace="partials/navbar :: navbar"></div>
-<h1>Posts</h1>
+<!--<h1>Posts</h1>-->
+<h1 th:if="${! posts.isEmpty()}">Here are all the posts!</h1>
+<h1 th:if="${posts.isEmpty()}">Sorry, no results found!</h1>
+
+<div class="row">
+    <form class="col-6">
+        <div class="form-group">
+            <label for="search">Search</label>
+            <input class="form-control" id="search" type="text" name="search" th:value="${searchTerm}" />
+        </div>
+    </form>
+</div>
+
 
 <div th:each="post : ${posts}">
-    <div class="card">
+    <div class="card col-6">
         <div class="card-body">
-    <!--<form method="get" th:action=>-->
-        <h3 class="text-center"><span th:text="${post.title}"></span></h3>
-        <p class="text-center"><span th:text="${post.body}"></span></p>
-        <!--<p><span th:text="${post.id}"></span></p>-->
-        <a th:href="@{'/posts/'+ ${post.id} +'/edit'}" class="btn btn-warning btn-md">Edit</a>
-    <!--</form>-->
-    <form method="post" th:action="@{'/posts/'+ ${post.id} +'/delete'}">
-        <Button type = "submit" class="btn btn-warning btn-md">Delete</Button>
-    </form>
+        <h2 class="text-center"><span th:text="${post.title}"></span></h2>
+            <p>Posted By: <span th:text="${post.user.email}" /></p>
+            <p class="text-center"><span th:text="${post.body}"></span></p>
+                <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn btn-primary btn-block">Edit</a>
+            <form class="col-3" method="post" th:action="@{/posts/{id}/delete(id=${post.id})}">
+                <input type="submit" class="btn btn-info btn-block" value="Delete" />
+            </form>
         </div>
     </div>
 </div>
