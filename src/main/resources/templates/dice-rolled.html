@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/header :: header('Rolled the dice were')" ></head>
 <body>
+<div th:replace="partials/navbar :: navbar"></div>
 <h1>You guessed: <span th:text="${n}"></span></h1>
 <h1>The Correct answer is <span th:text="${number}"></span> </h1>
 <h1 th:if="${result}">You are a winner!!!</h1>

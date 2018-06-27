@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Create an account</h1>
+<div th:replace="partials/navbar :: navbar"></div>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="username">Username</label>
     <input id="username" th:field="*{username}" />

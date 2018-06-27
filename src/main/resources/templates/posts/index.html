@@ -15,7 +15,7 @@
         <!--<p><span th:text="${post.id}"></span></p>-->
         <a th:href="@{'/posts/'+ ${post.id} +'/edit'}" class="btn btn-warning btn-md">Edit</a>
     <!--</form>-->
-    <form method="post" th:action="@{'/posts/'+ ${post.id} +'/delete'}">
+    <form method="post" th:if="${}" th:action="@{'/posts/'+ ${post.id} +'/delete'}">
         <Button type = "submit" class="btn btn-warning btn-md">Delete</Button>
     </form>
         </div>
